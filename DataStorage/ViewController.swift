@@ -27,19 +27,22 @@ class ViewController: UIViewController {
         if switcher.isOn {
             defaults.set(image2, forKey: imageNameKey)
             defaults.set(true, forKey: isBackgroundDarkKey)
+            updateUI(isDark: true)
         } else {
             defaults.set(image1, forKey: imageNameKey)
             defaults.set(false, forKey: isBackgroundDarkKey)
+            updateUI(isDark: false)
         }
-        updateUI()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
+        let isDark = defaults.bool(forKey: isBackgroundDarkKey)
+        switcher.isOn = isDark
+        updateUI(isDark: isDark)
     }
 
-    func updateUI() {
+    func updateUI(isDark: Bool) {
         var savedFileName = defaults.string(forKey: imageNameKey)
         if (savedFileName == nil) {
             savedFileName = image1
@@ -48,7 +51,7 @@ class ViewController: UIViewController {
         
         image.image = UIImage(named: savedFileName ?? image1)
         
-        if (defaults.bool(forKey: isBackgroundDarkKey)) {
+        if (isDark) {
             self.view.backgroundColor = darkBackColor
         } else {
             self.view.backgroundColor = lightBackColor
