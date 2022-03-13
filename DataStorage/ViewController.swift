@@ -15,8 +15,8 @@ class ViewController: UIViewController {
     let lightImageName: String = "light"
     let darkImageName: String = "dark"
     
-    let lightBackColor = UIColor.gray
-    let darkBackColor = UIColor.brown
+    let lightBackColor = UIColor.white
+    let darkBackColor = UIColor.black
     
     let imageNameKey: String = "imageNameKey"
     let isBackgroundLightKey: String = "isBackgroundLightKey"
